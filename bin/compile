@@ -271,9 +271,9 @@ cmake_file="cmake-${cmake_version}.tar.gz"
 cmake_tar_dir="cmake-${cmake_version}"
 
 opencv_version="2.4.2"
-opencv_dir="OpenCV-${opencv_version}"
-opencv_file="${opencv_dir}.tar.gz"
-opencv_url="https://s3.amazonaws.com/loku-python/${opencv_dir}.tar.bz2"
+opencv_dir="vulcan-compiled-opencv"
+opencv_file="vulcan-compiled-opencv.tgz"
+opencv_url="http://s3.amazonaws.com/tznode/vulcan-compiled-opencv.tgz"
 
 cache_target=${cache}/${cmake_file}
 build_target=${build}/.heroku
