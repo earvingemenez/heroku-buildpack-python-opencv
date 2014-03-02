@@ -197,18 +197,18 @@ source $BIN_DIR/steps/pylibmc
 puts-step "Activating virtualenv"
 source $VIRTUALENV_LOC/bin/activate
 
-# Install Mercurial if it appears to be required.
-if (grep -Fiq "hg+" requirements.txt) then
-  pip install --use-mirrors mercurial | indent
-fi
+# # Install Mercurial if it appears to be required.
+# if (grep -Fiq "hg+" requirements.txt) then
+#   pip install --use-mirrors mercurial | indent
+# fi
 
-# Install ez_setup
-puts-step "Installing ez_setup using pip version $(pip --version | awk '{print $2}')"
-pip install --use-mirrors --exists-action=w --src=./.heroku/src ez_setup | indent
+# # Install ez_setup
+# puts-step "Installing ez_setup using pip version $(pip --version | awk '{print $2}')"
+# pip install --use-mirrors --exists-action=w --src=./.heroku/src ez_setup | indent
 
-# Install dependencies with Pip.
-puts-step "Installing dependencies using pip version $(pip --version | awk '{print $2}')"
-pip install --use-mirrors -r requirements.txt --exists-action=w --src=./.heroku/src | indent
+# # Install dependencies with Pip.
+# puts-step "Installing dependencies using pip version $(pip --version | awk '{print $2}')"
+# pip install --use-mirrors -r requirements.txt --exists-action=w --src=./.heroku/src | indent
 
 # Do additional application hackery if applications appears to be a Django app.
 # Optionally, disable all Django-specific changes with `DISABLE_INJECTION` env.
@@ -279,27 +279,27 @@ cache_target=${cache}/${cmake_file}
 build_target=${build}/.heroku
 target=/app/.heroku
 
-if [ ! -f ${cache_target} ]; then
-  echo "No cached compile detected. Bulding..." | indent
-  cd $build
+# if [ ! -f ${cache_target} ]; then
+#   echo "No cached compile detected. Bulding..." | indent
+#   cd $build
   
-  #echo "Compiling cmake v${cmake_version}..." | indent
-  #Compile cmake
-  # curl -s ${cmake_url} > ${cmake_file}
-  # tar zxf ${cmake_file}
-  # cd ${cmake_tar_dir}
-  # ./bootstrap --prefix=${target} | indent
-  # make | indent
-  # make install | indent
-  # cd ..
+#   #echo "Compiling cmake v${cmake_version}..." | indent
+#   #Compile cmake
+#   # curl -s ${cmake_url} > ${cmake_file}
+#   # tar zxf ${cmake_file}
+#   # cd ${cmake_tar_dir}
+#   # ./bootstrap --prefix=${target} | indent
+#   # make | indent
+#   # make install | indent
+#   # cd ..
 
-  #Create cache slug
-  #tar czf ${cache_target} -C ${target} .
-fi
+#   #Create cache slug
+#   #tar czf ${cache_target} -C ${target} .
+# fi
 
-mkdir -p ${build_target}
-tar xzf ${cache_target} -C ${build_target}
-PATH=${build_target}/bin:$PATH
+# mkdir -p ${build_target}
+# tar xzf ${cache_target} -C ${build_target}
+# PATH=${build_target}/bin:$PATH
 
 cache_target=${cache}/${opencv_file}
 build_target=${build}/.heroku
